@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="x-icon" href="gym.png">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title> Abubakar Gym</title>
+<style>
+    /* Basic Reset */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    /* Main container */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f9;
+        color: #333;
+    }
+
+    /* Navbar container */
+    nav {
+        background-color: #fff; /* Light background */
+        display: flex;
+        justify-content: space-between;
+        padding: 1rem 2rem;
+        align-items: center;
+        z-index: 10; /* Keep navbar above hero section */
+        position: relative; /* Positioning context for z-index */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Added box shadow */
+    }
+
+    /* Logo style */
+    .logo {
+        font-size: 1.5rem;
+        color: #333; /* Dark text for contrast */
+        font-weight: bold;
+        text-transform: uppercase;
+        text-decoration: none;
+    }
+
+    /* Navbar links */
+    .nav-links {
+        list-style: none;
+        display: flex;
+        align-items: center;
+    }
+
+    .nav-links li {
+        margin-left: 1.5rem;
+        position: relative; /* For dropdown positioning */
+    }
+
+    .nav-links a {
+        color: #333; /* Dark text for contrast */
+        text-decoration: none;
+        font-size: 1rem;
+        position: relative;
+        padding: 0.5rem;
+        transition: color 0.3s ease;
+    }
+
+    /* Hover effect */
+    .nav-links a:hover {
+        color: #4CAF50; /* Change color on hover */
+    }
+
+    /* Underline effect on hover */
+    .nav-links a::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 0;
+        height: 2px;
+        background-color: #4CAF50;
+        transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after {
+        width: 100%; /* Full width on hover */
+    }
+
+    /* Dropdown menu styling */
+    .dropdown {
+        display: none; /* Hide dropdown by default */
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: #f9f9f9; /* Light background */
+        list-style: none;
+        padding: 0.5rem 0;
+        border-radius: 4px;
+        min-width: 150px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Box shadow for dropdown */
+    /* visibility: hidden; */
+    }
+
+    .dropdown li {
+        width: 100%;
+    }
+
+    .dropdown a {
+        padding: 0.5rem 1rem;
+        display: block;
+        font-size: 0.9rem;
+        color: #333; /* Dark text for contrast */
+        transition: background-color 0.3s ease; /* Smooth background transition */
+    }
+
+    .dropdown a:hover {
+        background-color: #4CAF50; /* Background color on hover */
+        color: #fff; /* White text on hover */
+    }
+
+    /* Show dropdown on hover of "More" */
+    .nav-links li:hover .dropdown {
+        display: block;
+    }
+
+
+    /* Contact page layout */
+    .contact-container {
+        max-width: 800px;
+        width: 90%;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+    }
+
+    h2 {
+        font-size: 2rem;
+        color: #4CAF50;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    /* Form styling */
+    form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    label {
+        margin: 10px 0 5px;
+        font-weight: bold;
+        color: #555;
+    }
+
+    input, textarea {
+        padding: 10px;
+        font-size: 1rem;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        margin-bottom: 20px;
+        width: 100%;
+        outline: none;
+    }
+
+    input[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        border: none;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #45a049;
+    }
+
+    /* Contact information */
+    .contact-info {
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .contact-info p {
+        font-size: 1rem;
+        color: #555;
+        margin: 5px 0;
+    }
+
+    .contact-info a {
+        color: #4CAF50;
+        text-decoration: none;
+    }
+
+    .contact-info a:hover {
+        text-decoration: underline;
+    }
+
+    /* Social media links */
+    .social-links {
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .social-links a {
+        color: #4CAF50;
+        font-size: 1.5rem;
+        transition: color 0.3s;
+    }
+
+    .social-links a:hover {
+        color: #333;
+    }
+
+    /* Map Section */
+    .map-container {
+        max-width: 100%;
+        height: 400px;
+        margin-top: 40px;
+        display: flex;
+        justify-content: center;
+        border: 1px solid #ddd;
+    }
+
+    /* Footer */
+    footer {
+        background-color: #f9f9f9;
+        padding: 20px;
+        text-align: center;
+        border-top: 1px solid #ddd;
+    }
+
+    footer p {
+        color: #777;
+        font-size: 0.9rem;
+    }
+</style>
+</head>
+<body>
+
+<!-- Navbar Structure -->
+<nav>
+    <a href="#home" class="logo">Abubakar <span> Gym </span></a>
+    <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="Services.html">Services</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li>
+            <a href="#">More</a>
+            <!-- Dropdown Menu -->
+            <ul class="dropdown">
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Gallery</a></li>
+                <li><a href="#">FAQ</a></li>
+            </ul>
+        </li>
+    </ul>
+</nav>
+
+<!-- Contact Section -->
+<div class="contact-container">
+    <h2>Contact Us</h2>
+
+    <form action="submit_form.php" method="POST">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="subject">Subject</label>
+        <input type="text" id="subject" name="subject">
+
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+
+        <input type="submit" value="Send Message">
+    </form>
+
+    <div class="contact-info">
+        <p>Email: <a href="mailto:abubakar07348@gmail.com">abubakar07348@gmail.com</a></p>
+        <p>Phone: <a href="tel:+923019497348">+923019497348</a></p>
+        <p>Address: 123 Gym Street, City, Country</p>
+    </div>
+
+    <div class="social-links">
+        <a href="https://www.facebook.com" target="_blank">Facebook</a>
+        <a href="https://www.twitter.com" target="_blank">Twitter</a>
+        <a href="https://www.instagram.com" target="_blank">Instagram</a>
+    </div>
+</div>
+
+<!-- Map Embed -->
+<div class="map-container">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3402.3082061084788!2d74.36477987438332!3d31.488211174228688!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391905ce2acbd773%3A0x6d19c47827e7b218!2sBrains%20college!5e0!3m2!1sen!2sus!4v1729965660497!5m2!1sen!2sus" width="100%" height="auto" style="border:1;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" ></iframe>
+</div>
+
+<!-- Footer -->
+<footer>
+    <p>&copy; 2024 Abubakar Gym. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
